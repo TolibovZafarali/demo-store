@@ -4,7 +4,7 @@ CREATE TABLE users (
     email VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
-);
+) ENGINE=InnoDB;
 
 CREATE TABLE addresses (
 	id BIGINT AUTO_INCREMENT,
@@ -14,4 +14,4 @@ CREATE TABLE addresses (
 	user_id BIGINT NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (user_id) REFERENCES users(id)
-);
+) ENGINE=InnoDB;
