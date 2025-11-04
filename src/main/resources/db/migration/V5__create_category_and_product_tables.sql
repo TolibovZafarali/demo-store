@@ -1,0 +1,18 @@
+CREATE TABLE categories (
+    id TINYINT UNSIGNED AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB;
+
+CREATE TABLE products (
+    id BIGINT UNSIGNED AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    category_id TINYINT UNSIGNED NOT NULL,
+    PRIMARY KEY (id),
+    CONSTRAINT fk_products_category
+      FOREIGN KEY (category_id)
+      REFERENCES categories(id)
+      ON DELETE RESTRICT
+      ON UPDATE CASCADE
+) ENGINE=InnoDB;

@@ -9,6 +9,7 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 @Builder
 @Entity
 @Table(name = "profiles")
@@ -33,5 +34,6 @@ public class Profile {
     @OneToOne
     @JoinColumn(name = "id")
     @MapsId
+    @ToString.Exclude
     private User user;
 }

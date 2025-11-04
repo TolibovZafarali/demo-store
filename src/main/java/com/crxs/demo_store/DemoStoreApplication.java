@@ -1,6 +1,7 @@
 package com.crxs.demo_store;
 
 import com.crxs.demo_store.entities.Address;
+import com.crxs.demo_store.entities.Profile;
 import com.crxs.demo_store.entities.Tag;
 import com.crxs.demo_store.entities.User;
 import org.springframework.boot.SpringApplication;
@@ -25,11 +26,16 @@ public class DemoStoreApplication {
 				.zip("zip")
 				.build();
 
-		var tag = new Tag("tag1");
-
 		user.addTag("tag1");
 
 		user.addAddress(address);
+
+		var profile = Profile.builder()
+						.bio("Some text")
+						.build();
+
+		user.setProfile(profile);
+		profile.setUser(user);
 
 		System.out.println(user);
 	}
