@@ -2,6 +2,9 @@ spring:
   application:
     name: demo-store
   datasource:
-    url: jdbc:mysql://localhost:3306/demo_store?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/demo_store_temp?createDatabaseIfNotExist=true
     username: root
     password: SpiderMan1133
+  jpa:
+    hibernate:
+      ddl-auto: create

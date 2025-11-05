@@ -10,6 +10,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
+@Table(name = "categories")
 public class Category {
 
     @Id
