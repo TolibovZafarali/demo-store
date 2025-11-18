@@ -1,14 +1,13 @@
 package com.crxs.demo_store.services;
 
-import com.crxs.demo_store.entities.Profile;
-import com.crxs.demo_store.entities.User;
-import com.crxs.demo_store.repositories.AddressRepository;
-import com.crxs.demo_store.repositories.ProfileRepository;
-import com.crxs.demo_store.repositories.UserRepository;
+import com.crxs.demo_store.entities.*;
+import com.crxs.demo_store.repositories.*;
 import jakarta.persistence.EntityManager;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.math.BigDecimal;
 
 @AllArgsConstructor
 @Service
@@ -16,6 +15,8 @@ public class UserService {
     private final UserRepository userRepository;
     private final ProfileRepository profileRepository;
     private final AddressRepository addressRepository;
+    private final ProductRepository productRepository;
+    private final CategoryRepository categoryRepository;
     private final EntityManager entityManager;
 
     @Transactional
@@ -61,4 +62,32 @@ public class UserService {
 
         System.out.println(address.getUser().getEmail());
     }
+
+    public void persistRelated() {
+        var user = User.builder()
+                .name("John Doe")
+                .email("john.doe@example.com")
+                .password("password123")
+                .build();
+
+        var address = Address.builder()
+                .street("123 Main Street")
+                .city("City")
+                .state("ST")
+                .zip("12345")
+                .build();
+
+        user.addAddress(address);
+
+        userRepository.save(user);
+    }
+
+    @Transactional
+    public void deleteRelated() {
+        var user = userRepository.findById(1L).orElseThrow();
+        var address = user.getAddresses().getFirst();
+        user.removeAddress(address);
+        userRepository.save(user);
+    }
+
 }
