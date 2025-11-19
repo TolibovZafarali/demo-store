@@ -1,5 +1,6 @@
 package com.crxs.demo_store;
 
+import com.crxs.demo_store.entities.Category;
 import com.crxs.demo_store.services.ProductService;
 import com.crxs.demo_store.services.UserService;
 import org.springframework.boot.SpringApplication;
@@ -14,8 +15,7 @@ public class DemoStoreApplication {
 		var userService = context.getBean(UserService.class);
 		var productService = context.getBean(ProductService.class);
 
-		userService.fetchProfiles(2);
-
+		productService.fetchProductsBySpecifications(null, null, null, new Category((byte) 1));
 
 	}
 

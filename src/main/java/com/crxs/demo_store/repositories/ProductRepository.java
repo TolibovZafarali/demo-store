@@ -1,19 +1,19 @@
 package com.crxs.demo_store.repositories;
 
 import com.crxs.demo_store.dtos.ProductSummary;
-import com.crxs.demo_store.dtos.ProductSummaryDTO;
 import com.crxs.demo_store.entities.Category;
 import com.crxs.demo_store.entities.Product;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.query.Procedure;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-public interface ProductRepository extends CrudRepository<Product, Long> {
+public interface ProductRepository extends JpaRepository<Product, Long>, ProductCriteriaRepository, JpaSpecificationExecutor<Product> {
     // String
     List<Product> findByName(String name);
     List<Product> findByNameLike(String name);
