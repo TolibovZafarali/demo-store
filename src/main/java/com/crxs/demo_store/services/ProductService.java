@@ -79,4 +79,15 @@ public class ProductService {
             System.out.println(product.getName());
         }
     }
+
+    @Transactional
+    public void updateProductPrices() {
+        productRepository.updatePriceByCategory(new BigDecimal("10.00"), (byte) 1);
+    }
+
+    @Transactional
+    public void fetchProducts() {
+        var products = productRepository.findProducts(new BigDecimal("10"), new BigDecimal("15"));
+        products.forEach(System.out::println);
+    }
 }

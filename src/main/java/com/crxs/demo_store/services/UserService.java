@@ -90,4 +90,24 @@ public class UserService {
         userRepository.save(user);
     }
 
+    @Transactional
+    public void fetchUsers() {
+        var users = userRepository.findAllWithAddresses();
+
+        users.forEach(user -> {
+            System.out.println(user);
+            user.getAddresses().forEach(System.out::println);
+        });
+    }
+
+    @Transactional
+    public void fetchProfiles(Integer loyaltyPoints) {
+        var users = userRepository.findUsers(loyaltyPoints);
+
+        users.forEach(user -> {
+            System.out.println(user.getId());
+            System.out.println(user.getEmail());
+        });
+    }
+
 }

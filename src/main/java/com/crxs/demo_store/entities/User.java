@@ -83,4 +83,13 @@ public class User {
     public void removeProduct(Product product) {
         products.remove(product);
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }
